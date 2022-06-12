@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.NewCandidateController">
+   <children>
+      <Label layoutX="232.0" layoutY="40.0" text="New Candidate">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="149.0" layoutY="124.0" text="Name" />
+      <Label layoutX="151.0" layoutY="154.0" text="Party" />
+      <Label layoutX="151.0" layoutY="183.0" text="Desc" />
+      <TextField id="NCName" layoutX="232.0" layoutY="120.0" promptText="Candidate Name" />
+      <TextField id="NCParty" layoutX="232.0" layoutY="150.0" promptText="Candidate Party" />
+      <TextField id="NCDesc" layoutX="232.0" layoutY="179.0" promptText="Candidate Description" />
+      <Button id="NCCreateButton" layoutX="274.0" layoutY="322.0" mnemonicParsing="false" text="Create" />
+   </children>
+</AnchorPane>
