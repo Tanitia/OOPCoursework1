@@ -11,37 +11,35 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AdminPortalController {
+public class VotingPortalLandingController {
+    @FXML
+    private Label welcomeText;
 
+    @FXML
+    protected void onHelloButtonClick() {
+        welcomeText.setText("Welcome to JavaFX Application!");
+    }
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public void NewElectionGo(ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("new_election.fxml"));
+    public void redirectUserLogin(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("user_login.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void EndElectionGo(ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("end_election.fxml"));
+    public void redirectUserSignUp(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("user_sign_up.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void AuthoriseUsersGo(ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("authorise_users.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void ViewResultsGo(ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("view_results.fxml"));
+    public void redirectAdminLogin(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("admin_log_in.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

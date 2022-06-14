@@ -15,9 +15,9 @@
       <Label layoutX="129.0" layoutY="166.0" text="Election Type" />
       <TextField id="NEElectionName" layoutX="242.0" layoutY="122.0" promptText="Election Name" />
       <ChoiceBox id="NEETDropdown" layoutX="242.0" layoutY="162.0" prefWidth="150.0" />
-      <Button id="NENewCandidateButton" layoutX="392.0" layoutY="250.0" mnemonicParsing="false" text="New Candidate" />
-      <Button id="NEDeleteCandidateButton" layoutX="387.0" layoutY="295.0" mnemonicParsing="false" text="Delete Candidate" />
-      <Button id="NEFinishButton" layoutX="291.0" layoutY="346.0" mnemonicParsing="false" text="Finish" />
+      <Button id="NENewCandidateButton" fx:id="NENewCandidate" layoutX="392.0" layoutY="250.0" mnemonicParsing="false" text="New Candidate" />
+      <Button id="NEDeleteCandidateButton" fx:id="NEDeleteCandidate" layoutX="387.0" layoutY="295.0" mnemonicParsing="false" text="Delete Candidate" />
+      <Button id="NEFinishButton" fx:id="NEFinish" layoutX="291.0" layoutY="346.0" mnemonicParsing="false" text="Finish" />
       <Label layoutX="101.0" layoutY="208.0" text="Candidates" />
       <ScrollPane layoutX="47.0" layoutY="225.0" prefHeight="106.0" prefWidth="168.0">
         <content>

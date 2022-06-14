@@ -12,8 +12,8 @@
          </font></Label>
       <Label layoutX="161.0" layoutY="126.0" text="Name" />
       <Label layoutX="152.0" layoutY="168.0" text="Password" />
-      <PasswordField id="ULIPasswordBox" layoutX="236.0" layoutY="164.0" promptText="Enter Password" />
-      <TextField id="ULINameBox" layoutX="236.0" layoutY="122.0" promptText="Enter Name" />
-      <Button id="ULIButton" layoutX="275.0" layoutY="285.0" mnemonicParsing="false" text="Log-in" />
+      <TextField id="ULINameBox" fx:id="ULINameBox" layoutX="236.0" layoutY="122.0" promptText="Enter Name" />
+      <Button id="ULIButton" fx:id="ULLogin" layoutX="275.0" layoutY="285.0" mnemonicParsing="false" onAction="#logInAction" text="Log-in" />
+      <PasswordField fx:id="ULIPasswordBox" layoutX="236.0" layoutY="164.0" />
    </children>
 </AnchorPane>

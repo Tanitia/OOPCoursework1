@@ -10,10 +10,10 @@
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Button id="APNEButton" layoutX="100.0" layoutY="133.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="108.0" text="New Election" />
-      <Button id="APEEButton" layoutX="406.0" layoutY="133.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="108.0" text="End Election" />
-      <Button id="APVRButton" layoutX="100.0" layoutY="252.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="108.0" text="View Results" />
-      <Button id="APAUButton" layoutX="406.0" layoutY="252.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="108.0" text="Authorise Users" />
+      <Button id="APNEButton" fx:id="APNewElection" layoutX="100.0" layoutY="133.0" mnemonicParsing="false" onAction="#NewElectionGo" prefHeight="47.0" prefWidth="108.0" text="New Election" />
+      <Button id="APEEButton" fx:id="APEndElection" layoutX="406.0" layoutY="133.0" mnemonicParsing="false" onAction="#EndElectionGo" prefHeight="47.0" prefWidth="108.0" text="End Election" />
+      <Button id="APVRButton" fx:id="APViewResults" layoutX="100.0" layoutY="252.0" mnemonicParsing="false" onAction="#ViewResultsGo" prefHeight="47.0" prefWidth="108.0" text="View Results" />
+      <Button id="APAUButton" fx:id="APAuthoriseUsers" layoutX="406.0" layoutY="252.0" mnemonicParsing="false" onAction="#AuthoriseUsersGo" prefHeight="47.0" prefWidth="108.0" text="Authorise Users" />
       <Button id="APLOButton" layoutX="271.0" layoutY="327.0" mnemonicParsing="false" text="Log-out" />
    </children>
 </AnchorPane>
