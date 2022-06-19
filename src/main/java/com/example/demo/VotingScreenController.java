@@ -68,9 +68,10 @@ public class VotingScreenController implements Initializable{
         while (CSVReader.hasNextLine()) {
             CurrentLine = CSVReader.nextLine();
             voter = asList(CurrentLine.split(","));//converts String to list of Strings
-            voterList.add(new Voter(voter.get(0), voter.get(1), voter.get(2), voter.get(3), Boolean.parseBoolean(voter.get(4))));//Populates list with disks both game and music
+            voterList.add(new Voter(voter.get(0), voter.get(1), voter.get(2),
+                    voter.get(3), Boolean.parseBoolean(voter.get(4))));
         }
-        for (int i = 0; i < voterList.size(); i++) {
+        for (int i = 0; i < candidateList.size(); i++) {
             votingCandidateListView.getItems().add(candidateList.get(i).getName());
             }
 
@@ -92,16 +93,26 @@ public class VotingScreenController implements Initializable{
         this.username = username;
     }
     public void confirmVote(ActionEvent actionEvent) throws FileNotFoundException {
-        for (int i = 0; i < candidateList.size(); i++) {
-            if (selectCandidateLabel.getText()==candidateList.get(i).getName()){
-                candidateList.get(i).Increment();
+        Voter currentVoter;
+        for (int i = 0; i < voterList.size(); i++) {
+            if (voterList.get(i).getVoterUsername().equals(username)){
+                currentVoter = voterList.get(i);
+                if (!currentVoter.gethasVoted()) {
+                    for (int x = 0; x < candidateList.size(); x++) {
+                        if (selectCandidateLabel.getText() == candidateList.get(x).getName()) {
+                            candidateList.get(x).Increment();
+                        }
+                    }
+                    PrintWriter pw = new PrintWriter("candidatedetails.txt");
+                    pw.close();
+                    for (int x = 0; x < candidateList.size(); x++) {
+                        candidateList.get(x).Save();
+
+                    }
+                    currentVoter.sethasVoted();
             }
         }
-        PrintWriter pw = new PrintWriter("candidatedetails.txt");
-        pw.close();
-        for (int i = 0; i < candidateList.size() ; i++) {
-            candidateList.get(i).Save();
 
-        }
+    }
     }
 }

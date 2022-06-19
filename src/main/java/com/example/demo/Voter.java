@@ -25,6 +25,18 @@ public class Voter extends User {
         this.hasVoted = hasVoted;
     }
 
+    public boolean gethasVoted(){
+        return this.hasVoted;
+    }
+
+    public void sethasVoted(){
+        this.hasVoted = true;
+    }
+
+    public String getVoterUsername(){
+        return this.Name;
+    }
+
     public boolean Save() {
         try {
             FileWriter myWriter = new FileWriter("userdetails.txt", true);
