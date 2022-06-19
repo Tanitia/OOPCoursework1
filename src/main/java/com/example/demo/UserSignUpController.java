@@ -36,16 +36,8 @@ public class UserSignUpController {
 
 
     public void redirectUserLogin(ActionEvent actionEvent) throws IOException {
-        try {
-            FileWriter myWriter = new FileWriter("userdetails.txt", true);
-            myWriter.write(USUNameBox.getText() + "," + USUAddressBox.getText() + "," + USUIDBox.getText() +
-                    "," + USUPasswordBox.getText() + "\n");
-            myWriter.close();
-            System.out.println("File has been written to");
-        } catch (IOException e) {
-            System.out.println("Error");
-            e.printStackTrace();
-        }
+        Voter currentVoter = new Voter(USUNameBox.getText() , USUAddressBox.getText() , USUIDBox.getText() , USUPasswordBox.getText());
+        currentVoter.Save();
         root = FXMLLoader.load(getClass().getResource("user_login.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);

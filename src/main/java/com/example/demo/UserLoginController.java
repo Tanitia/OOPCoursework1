@@ -22,6 +22,8 @@ import static java.util.Arrays.asList;
 
 public class UserLoginController {
 
+
+    static VotingScreenController VoterController ;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -48,11 +50,20 @@ public class UserLoginController {
         for (int i = 0; i < userList.size(); i++) {
             if (userList.get(i).get(0).equals(ULINameBox.getText()) && userList.get(i).get(3).equals(ULIPasswordBox.getText())){
                 System.out.println("True");
-                root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
-                stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("voting_screen.fxml"));
+                Parent root = loader.load();
+
+                VoterController = loader.getController();
+                VoterController.setUsername(ULINameBox.getText());
+
+                Scene scene = new Scene(root);
+                Stage dash = new Stage();
+                dash.setScene(scene);
+                dash.show();
+
+                Stage stage = (Stage) ULINameBox.getScene().getWindow();
+                stage.close();
+
             }
         }
     }

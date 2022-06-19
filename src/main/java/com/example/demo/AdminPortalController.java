@@ -47,4 +47,20 @@ public class AdminPortalController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void redirectCreateCandidate(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("create_candidate.fxml"));
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void redirectToVP(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
