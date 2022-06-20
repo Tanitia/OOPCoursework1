@@ -103,13 +103,21 @@ public class VotingScreenController implements Initializable{
                             candidateList.get(x).Increment();
                         }
                     }
+                    currentVoter.sethasVoted();
                     PrintWriter pw = new PrintWriter("candidatedetails.txt");
                     pw.close();
                     for (int x = 0; x < candidateList.size(); x++) {
                         candidateList.get(x).Save();
 
                     }
-                    currentVoter.sethasVoted();
+                    pw = new PrintWriter("userdetails.txt");
+                    pw.close();
+                    for (int x = 0; x < voterList.size(); x++) {
+                        voterList.get(x).Save();
+
+                    }
+
+
             }
         }
 

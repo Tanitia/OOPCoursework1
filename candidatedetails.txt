@@ -1,2 +1,2 @@
-Candidate1,1,description hi,4
-Candidate2,1,description hi,1
+Candidate1,description hi,1,6
+Candidate2,description hi,1,2

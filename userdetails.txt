@@ -1,4 +1,4 @@
 name,address,1234,tanitia,false
 tea,afaef,aefeaf,134134314,false
-tanitia,1212121,1212121,hi123,false
-richard,address,146,hello123,false
+tanitia,1212121,1212121,hi123,true
+richard,address,146,hello123,true
