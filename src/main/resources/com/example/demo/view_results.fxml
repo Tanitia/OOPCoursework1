@@ -12,11 +12,13 @@
          </font>
       </Label>
       <Label layoutX="86.0" layoutY="135.0" text="Ended Elections" />
-      <ScrollPane layoutX="200.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
-      <Button fx:id="VRView" layoutX="464.0" layoutY="200.0" mnemonicParsing="false" onAction="#viewResults" text="View" />
+      <ListView fx:id="VRElectionListview" layoutX="212.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="VRBackButton" layoutX="473.0" layoutY="200.0" mnemonicParsing="false" onAction="#VRBackButton" text="Back" />
+      <Label fx:id="textLabel" layoutX="473.0" layoutY="117.0" text="Winner">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="VRWinnerLabel" layoutX="450.0" layoutY="152.0" text="Candidate name" textAlignment="CENTER" />
    </children>
 </AnchorPane>

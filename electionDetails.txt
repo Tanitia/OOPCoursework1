@@ -1,0 +1,6 @@
+Test1,Candidate1,true
+Test2,madi,true
+burger,23432,true
+noafonsfeno,n/a,true
+nlnlnl,n/a,true
+hello,null,false

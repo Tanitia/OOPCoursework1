@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Election {
     private String electionName;
 
@@ -34,5 +37,20 @@ public class Election {
 
     public boolean getElectionStatus(){
         return this.electionStatus;
+    }
+
+    public boolean Save() {
+        try {
+            FileWriter myWriter = new FileWriter("electionDetails.txt", true);
+            myWriter.write(this.electionName + "," + this.electionWinner + "," + this.electionStatus);
+            myWriter.write("\n");
+            myWriter.close();
+            System.out.println("File has been written to");
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error");
+            e.printStackTrace();
+            return false;
+        }
     }
 }

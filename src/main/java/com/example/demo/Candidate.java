@@ -40,5 +40,12 @@ public void Increment(){
 public String getName(){
         return this.candidateName;
 };
+
+    public int getNumVotes(){
+        return this.numVotes;
+    }
+    public Boolean compare(Candidate nextCandidate){
+        return this.numVotes< nextCandidate.getNumVotes();
+    }
 }
 
