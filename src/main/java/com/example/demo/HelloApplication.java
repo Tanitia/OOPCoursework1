@@ -29,6 +29,12 @@ public class HelloApplication extends Application {
             } else {
                 System.out.println("File already exists.");
             }
+            File electionFile = new File("electionDetails.txt");
+            if (electionFile.createNewFile()) {
+                System.out.println("File created: " + electionFile.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

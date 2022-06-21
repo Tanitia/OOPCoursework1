@@ -33,6 +33,10 @@ public class Voter extends User {
         this.hasVoted = true;
     }
 
+    public void sethasVotedFalse(){
+        this.hasVoted = false;
+    }
+
     public String getVoterUsername(){
         return this.Name;
     }
