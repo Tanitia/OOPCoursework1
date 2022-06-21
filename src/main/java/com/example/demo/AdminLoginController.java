@@ -31,6 +31,8 @@ public class AdminLoginController {
     @FXML
     private PasswordField ALIPasswordBox;
 
+    @FXML private Label ALIErrorLabel;
+
 
     public void adminLoginOK(ActionEvent actionEvent) throws IOException {
         List<List<String>> adminList = new ArrayList<>();
@@ -53,6 +55,9 @@ public class AdminLoginController {
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
+            }
+            else{
+                ALIErrorLabel.setText("Incorrect credentials");
             }
         }
     }

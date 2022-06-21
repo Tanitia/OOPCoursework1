@@ -57,15 +57,27 @@ public class EndElectionController {
                         candidate = asList(CurrentLine.split(","));//converts String to list of Strings
                         candidateList.add(new Candidate(candidate.get(0), candidate.get(1), candidate.get(2), Integer.valueOf(candidate.get(3))));//Populates list with disks both game and music
                     }
+                    int tieVotes = 0;
+                    boolean tie = false;
                     if (!(candidateList.size()<1)){
                         Candidate winner = candidateList.get(0);
+
                         for (int j = 1; j < candidateList.size() ; j++) {
-                            if (winner.compare(candidateList.get(j))){
+                            if (winner.compare(candidateList.get(j)) && candidateList.get(j).getNumVotes()> tieVotes){
                                 winner = candidateList.get(j);
+                                tie = false;
+                            }
+                            else if(winner.getNumVotes()==candidateList.get(j).getNumVotes()){
+                                tie = true;
                             }
 
                         }
-                        electionList.get(i).endElection(winner.getName());
+                        if(!tie){
+                            electionList.get(i).endElection(winner.getName());
+                        }
+                        else{
+                            electionList.get(i).endElection("inconclusive");
+                        }
                     }
                     else {
                         electionList.get(i).endElection("n/a");

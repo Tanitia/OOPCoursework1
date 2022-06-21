@@ -41,6 +41,12 @@ public String getName(){
         return this.candidateName;
 };
 
+    public String getCandidateID(){
+        System.out.println(this.candidateID);
+        return this.candidateID;
+
+    };
+
     public int getNumVotes(){
         return this.numVotes;
     }

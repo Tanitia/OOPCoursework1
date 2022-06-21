@@ -3,4 +3,16 @@ Test2,madi,true
 burger,23432,true
 noafonsfeno,n/a,true
 nlnlnl,n/a,true
-hello,null,false
+hello,huafoafeauo,true
+test,inconclusive,true
+test1,inconclusive,true
+end,n/a,true
+testvote,1,true
+suit,null,false
+suit,null,false
+suit,null,false
+suit,null,false
+suit,null,false
+suit,null,false
+suit,null,false
+burger,null,false

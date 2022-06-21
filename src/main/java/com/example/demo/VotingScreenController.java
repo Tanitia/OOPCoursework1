@@ -3,6 +3,7 @@ package com.example.demo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -28,6 +30,10 @@ import javafx.stage.Stage;
 import static java.util.Arrays.asList;
 
 public class VotingScreenController implements Initializable{
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     private ListView<String> votingCandidateListView;
@@ -92,7 +98,7 @@ public class VotingScreenController implements Initializable{
     public void setUsername(String username){
         this.username = username;
     }
-    public void confirmVote(ActionEvent actionEvent) throws FileNotFoundException {
+    public void confirmVote(ActionEvent actionEvent) throws IOException {
         Voter currentVoter;
         for (int i = 0; i < voterList.size(); i++) {
             if (voterList.get(i).getVoterUsername().equals(username)){
@@ -122,5 +128,10 @@ public class VotingScreenController implements Initializable{
         }
 
     }
+        root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

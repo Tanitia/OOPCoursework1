@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -28,10 +29,13 @@ public class UserLoginController {
     private Scene scene;
     private Parent root;
     @FXML
-    private TextField ULINameBox;
+    private TextField ULIIDBox;
 
     @FXML
     private PasswordField ULIPasswordBox;
+
+    @FXML
+    private Label ULIErrorLabel;
 
 
     public void logInAction(ActionEvent actionEvent) throws IOException {
@@ -48,22 +52,32 @@ public class UserLoginController {
 
 
         for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).get(0).equals(ULINameBox.getText()) && userList.get(i).get(3).equals(ULIPasswordBox.getText())){
+            if (userList.get(i).get(2).equals(ULIIDBox.getText())
+                    && userList.get(i).get(3).equals(ULIPasswordBox.getText())
+                    && userList.get(i).get(4).equals("false")) {
                 System.out.println("True");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("voting_screen.fxml"));
                 Parent root = loader.load();
 
                 VoterController = loader.getController();
-                VoterController.setUsername(ULINameBox.getText());
+                VoterController.setUsername(ULIIDBox.getText());
 
                 Scene scene = new Scene(root);
                 Stage dash = new Stage();
                 dash.setScene(scene);
                 dash.show();
 
-                Stage stage = (Stage) ULINameBox.getScene().getWindow();
+                Stage stage = (Stage) ULIIDBox.getScene().getWindow();
                 stage.close();
 
+            } else if (userList.get(i).get(2).equals(ULIIDBox.getText())
+                    && userList.get(i).get(3).equals(ULIPasswordBox.getText())
+                    && userList.get(i).get(4).equals("true")) {
+                ULIErrorLabel.setText("You have already voted");
+                break;
+            }
+            else {
+                ULIErrorLabel.setText("Incorrect username or password");
             }
         }
     }
