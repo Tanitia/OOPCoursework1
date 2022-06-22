@@ -42,6 +42,12 @@ public class ViewResultsController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        boolean success = viewResultsLogic();
+        if(success){}
+
+    }
+
+    public boolean viewResultsLogic(){
         File CSVFile = new File("electiondetails.txt");
         String CurrentLine;
         Scanner CSVReader = null;
@@ -77,6 +83,7 @@ public class ViewResultsController implements Initializable {
 
             }
         });
+        return true;
     }
 
     public void VRBackButton(ActionEvent actionEvent) throws IOException {

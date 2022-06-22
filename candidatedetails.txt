@@ -1,6 +1,0 @@
-tea,123,asdsa,0
-sdfsd,123,awdwd,0
-sfaf,123,adsad,0
-tea,123,asdasd,0
-sdfds,123,asdsd,0
-hello,123,asdsda,0

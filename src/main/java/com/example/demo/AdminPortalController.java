@@ -32,14 +32,6 @@ public class AdminPortalController {
         stage.show();
     }
 
-    public void AuthoriseUsersGo(ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("authorise_users.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void ViewResultsGo(ActionEvent actionEvent) throws IOException {
         root = FXMLLoader.load(getClass().getResource("view_results.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -58,6 +50,14 @@ public class AdminPortalController {
 
     public void redirectToVP(ActionEvent actionEvent) throws IOException {
         root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void DeleteUsersGo(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("admin_delete_users.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

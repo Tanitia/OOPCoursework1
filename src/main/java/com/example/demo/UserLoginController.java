@@ -39,6 +39,25 @@ public class UserLoginController {
 
 
     public void logInAction(ActionEvent actionEvent) throws IOException {
+        boolean success = confirmLogin();
+        if (success) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("voting_screen.fxml"));
+            Parent root = loader.load();
+
+            VoterController = loader.getController();
+            VoterController.setVoterID(ULIIDBox.getText());
+
+            Scene scene = new Scene(root);
+            Stage dash = new Stage();
+            dash.setScene(scene);
+            dash.show();
+
+            Stage stage = (Stage) ULIIDBox.getScene().getWindow();
+            stage.close();
+
+        }
+    }
+    public boolean confirmLogin() throws IOException {
         List<List<String>> userList = new ArrayList<>();
         List<String> user;
         File CSVFile = new File("userdetails.txt");
@@ -55,20 +74,8 @@ public class UserLoginController {
             if (userList.get(i).get(2).equals(ULIIDBox.getText())
                     && userList.get(i).get(3).equals(ULIPasswordBox.getText())
                     && userList.get(i).get(4).equals("false")) {
-                System.out.println("True");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("voting_screen.fxml"));
-                Parent root = loader.load();
 
-                VoterController = loader.getController();
-                VoterController.setUsername(ULIIDBox.getText());
-
-                Scene scene = new Scene(root);
-                Stage dash = new Stage();
-                dash.setScene(scene);
-                dash.show();
-
-                Stage stage = (Stage) ULIIDBox.getScene().getWindow();
-                stage.close();
+                return true;
 
             } else if (userList.get(i).get(2).equals(ULIIDBox.getText())
                     && userList.get(i).get(3).equals(ULIPasswordBox.getText())
@@ -80,5 +87,14 @@ public class UserLoginController {
                 ULIErrorLabel.setText("Incorrect username or password");
             }
         }
+        return false;
+    }
+
+    public void ULIBackButton(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

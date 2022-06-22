@@ -41,6 +41,8 @@ public class Voter extends User {
         return this.Name;
     }
 
+    public String getVoterID(){return this.VoterID;}
+
     public boolean Save() {
         try {
             FileWriter myWriter = new FileWriter("userdetails.txt", true);

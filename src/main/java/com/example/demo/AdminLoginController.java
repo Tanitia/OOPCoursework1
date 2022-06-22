@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,18 @@ public class AdminLoginController {
 
 
     public void adminLoginOK(ActionEvent actionEvent) throws IOException {
+        boolean success = adminLoginLogic();
+        if (success){
+            root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
+            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+
+    }
+
+    public boolean adminLoginLogic() throws FileNotFoundException {
         List<List<String>> adminList = new ArrayList<>();
         List<String> user;
         File CSVFile = new File("adminDetails.txt");
@@ -45,20 +58,24 @@ public class AdminLoginController {
             user = asList(CurrentLine.split(","));//converts String to list of Strings
             adminList.add(user);//Populates list with disks both game and music
         }
-        System.out.println(adminList);
+
 
         for (int i = 0; i < adminList.size(); i++) {
             if (adminList.get(i).get(0).equals(ALINameBox.getText()) && adminList.get(i).get(1).equals(ALIPasswordBox.getText())) {
-                System.out.println("True");
-                root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
-                stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                return true;
             }
             else{
                 ALIErrorLabel.setText("Incorrect credentials");
             }
         }
+        return false;
+    }
+
+    public void ALGoBack(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

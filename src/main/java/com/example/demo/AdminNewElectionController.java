@@ -33,6 +33,18 @@ public class AdminNewElectionController {
     private Scene scene;
     private Parent root;
     public void createElection(ActionEvent actionEvent) throws IOException {
+        boolean success = creationLogic();
+        if (success){
+            root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
+            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+
+    }
+
+    public boolean creationLogic() throws FileNotFoundException {
         List<String> electionDetailsList = new ArrayList<>();
         List<Election> electionList = new ArrayList<>();
         Election election;
@@ -56,7 +68,6 @@ public class AdminNewElectionController {
 
                 }
             }
-            System.out.println(uniqueName);
             if (!NENameBox.getText().equals("")) {
                 if (uniqueName) {
                     for (int i = 0; i < electionList.size(); i++) {
@@ -131,13 +142,9 @@ public class AdminNewElectionController {
 
                     pw = new PrintWriter("candidateDetails.txt");
                     pw.close();
+                    return true;
 
 
-                    root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
-                    stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                    scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
                 }
                 else{
                     NEErrorLabel.setText("Please use a unique election name");
@@ -147,6 +154,7 @@ public class AdminNewElectionController {
                 NEErrorLabel.setText("Please enter a name");
             }
         }
+        return false;
     }
 
     public void returnToAdminPortal(ActionEvent actionEvent) throws IOException {

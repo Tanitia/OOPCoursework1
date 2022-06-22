@@ -8,11 +8,12 @@ test,inconclusive,true
 test1,inconclusive,true
 end,n/a,true
 testvote,1,true
-suit,null,false
-suit,null,false
-suit,null,false
-suit,null,false
-suit,null,false
-suit,null,false
-suit,null,false
-burger,null,false
+suit,tea,true
+suit,inconclusive,true
+suit,inconclusive,true
+suit,inconclusive,true
+suit,inconclusive,true
+suit,inconclusive,true
+suit,inconclusive,true
+burger,inconclusive,true
+cheese sandwich,null,false

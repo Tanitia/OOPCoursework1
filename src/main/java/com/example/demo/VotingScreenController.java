@@ -41,7 +41,7 @@ public class VotingScreenController implements Initializable{
     @FXML
     private Label selectCandidateLabel;
 
-    private String username;
+    private String voterID;
 
     List<Candidate> candidateList = new ArrayList<>();
     List<String> candidate;
@@ -95,13 +95,25 @@ public class VotingScreenController implements Initializable{
         });
     }
 
-    public void setUsername(String username){
-        this.username = username;
+    public void setVoterID(String voterID){
+        this.voterID = voterID;
     }
     public void confirmVote(ActionEvent actionEvent) throws IOException {
+        boolean success = confirmVoteLogic();
+        if (success){
+            root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
+            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+
+    }
+
+    public boolean confirmVoteLogic() throws FileNotFoundException {
         Voter currentVoter;
         for (int i = 0; i < voterList.size(); i++) {
-            if (voterList.get(i).getVoterUsername().equals(username)){
+            if (voterList.get(i).getVoterID().equals(voterID)){
                 currentVoter = voterList.get(i);
                 if (!currentVoter.gethasVoted()) {
                     for (int x = 0; x < candidateList.size(); x++) {
@@ -124,12 +136,16 @@ public class VotingScreenController implements Initializable{
                     }
 
 
+                }
             }
-        }
 
+        }
+        return true;
     }
+
+    public void VMGoBack(ActionEvent actionEvent) throws IOException {
         root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -29,6 +29,16 @@ public class EndElectionController {
     private Parent root;
 
     public void EndElection(ActionEvent actionEvent) throws IOException {
+        boolean success = endElectionLogic();
+        if(success){
+        root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}
+    }
+
+    public boolean endElectionLogic() throws FileNotFoundException {
         List<String> electionDetailsList = new ArrayList<>();
         List<Election> electionList = new ArrayList<>();
         Election election;
@@ -116,12 +126,9 @@ public class EndElectionController {
 
             pw = new PrintWriter("candidateDetails.txt");
             pw.close();
+            return true;
         }
-        root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
-        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        return false;
     }
 
         public void EEBack (ActionEvent actionEvent) throws IOException {

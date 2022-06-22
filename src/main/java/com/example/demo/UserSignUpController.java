@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,12 +38,20 @@ public class UserSignUpController {
     @FXML
     private TextField USUPasswordBox;
 
-    @FXML
-    private TextField USUConfirmBox;
 
+    public void confirmSignup(ActionEvent actionEvent) throws IOException {
+        boolean success = voterSignup();
+        if (success) {
+            root = FXMLLoader.load(getClass().getResource("user_login.fxml"));
+            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
 
-    public void redirectUserLogin(ActionEvent actionEvent) throws IOException {
-        if(!USUNameBox.getText().equals("") && !USUAddressBox.getText().equals("")
+    public boolean voterSignup() throws FileNotFoundException {
+        if (!USUNameBox.getText().equals("") && !USUAddressBox.getText().equals("")
                 && !USUIDBox.getText().equals("") && !USUPasswordBox.getText().equals("")) {
             List<List<String>> userList = new ArrayList<>();
             List<String> user;
@@ -55,22 +64,26 @@ public class UserSignUpController {
                 userList.add(user);//Populates list with disks both game and music
             }
             boolean uniqueID = true;
-            for (int i = 0; i <userList.size() ; i++) {
-                if (USUIDBox.getText().equals(userList.get(i).get(2))){
+            for (int i = 0; i < userList.size(); i++) {
+                if (USUIDBox.getText().equals(userList.get(i).get(2))) {
                     uniqueID = false;
                 }
             }
             if (uniqueID) {
                 Voter currentVoter = new Voter(USUNameBox.getText(), USUAddressBox.getText(), USUIDBox.getText(), USUPasswordBox.getText());
                 currentVoter.Save();
-                root = FXMLLoader.load(getClass().getResource("user_login.fxml"));
-                stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-                System.out.println(USUNameBox.getText());
+                return true;
             }
         }
+        return false;
+
     }
 
+    public void USUGoBack(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

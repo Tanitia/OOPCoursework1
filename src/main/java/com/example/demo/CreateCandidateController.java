@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -31,9 +32,25 @@ public class CreateCandidateController {
     @FXML
     private TextField ACIDBox;
 
+    @FXML
+            private Label ACErrorLabel;
+
     List<Candidate> candidateList = new ArrayList<>();
     List<String> candidate;
-    public void redirectAdminPortal(ActionEvent actionEvent) throws IOException {
+    public void confirmCandidateCreate(ActionEvent actionEvent) throws IOException {
+        boolean success = candidateCreationLogic();
+        if (success){
+            root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
+            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        }
+
+    }
+
+    public boolean candidateCreationLogic(){
         boolean uniqueCandidateID = true;
 
         if(!ACNameBox.getText().equals("") && !ACDescriptionBox.getText().equals("") && !ACIDBox.getText().equals("")) {
@@ -53,6 +70,7 @@ public class CreateCandidateController {
             for (int i = 0; i < candidateList.size(); i++) {
                 if(candidateList.get(i).getCandidateID().equals(ACIDBox.getText())){
                     uniqueCandidateID = false;
+                    ACErrorLabel.setText("ID is not unique");
                 }
 
 
@@ -60,13 +78,20 @@ public class CreateCandidateController {
             if(uniqueCandidateID) {
                 Candidate currentCandidate = new Candidate(ACNameBox.getText(), ACDescriptionBox.getText(), ACIDBox.getText(), 0);
                 currentCandidate.Save();
+                return true;
 
-                root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
-                stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+
             }
-        }
+        } else{ACErrorLabel.setText("Please ensure all fields are entered");}
+        return false;
+
+    }
+
+    public void ACBackGo(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
