@@ -17,6 +17,12 @@
       <TextField id="USUName" fx:id="ACNameBox" layoutX="226.0" layoutY="130.0" promptText="Name" />
       <TextField id="USUAddress" fx:id="ACIDBox" layoutX="226.0" layoutY="154.0" promptText="ID" />
       <TextField id="USUIDNum" fx:id="ACDescriptionBox" layoutX="226.0" layoutY="178.0" prefHeight="104.0" prefWidth="149.0" promptText="Description" />
-      <Button fx:id="USUOkay" layoutX="278.0" layoutY="307.0" mnemonicParsing="false" onAction="#redirectAdminPortal" text="Okay" />
+      <Button fx:id="USUOkay" layoutX="278.0" layoutY="307.0" mnemonicParsing="false" onAction="#confirmCandidateCreate" text="Okay" />
+      <Label fx:id="ACErrorLabel" layoutX="286.0" layoutY="348.0" textFill="#ae0000">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="ACBackButton" layoutX="280.0" layoutY="344.0" mnemonicParsing="false" onAction="#ACBackGo" text="Back" />
    </children>
 </AnchorPane>

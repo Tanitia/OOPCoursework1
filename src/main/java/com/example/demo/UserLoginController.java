@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -28,13 +29,35 @@ public class UserLoginController {
     private Scene scene;
     private Parent root;
     @FXML
-    private TextField ULINameBox;
+    private TextField ULIIDBox;
 
     @FXML
     private PasswordField ULIPasswordBox;
 
+    @FXML
+    private Label ULIErrorLabel;
+
 
     public void logInAction(ActionEvent actionEvent) throws IOException {
+        boolean success = confirmLogin();
+        if (success) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("voting_screen.fxml"));
+            Parent root = loader.load();
+
+            VoterController = loader.getController();
+            VoterController.setVoterID(ULIIDBox.getText());
+
+            Scene scene = new Scene(root);
+            Stage dash = new Stage();
+            dash.setScene(scene);
+            dash.show();
+
+            Stage stage = (Stage) ULIIDBox.getScene().getWindow();
+            stage.close();
+
+        }
+    }
+    public boolean confirmLogin() throws IOException {
         List<List<String>> userList = new ArrayList<>();
         List<String> user;
         File CSVFile = new File("userdetails.txt");
@@ -48,23 +71,30 @@ public class UserLoginController {
 
 
         for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).get(0).equals(ULINameBox.getText()) && userList.get(i).get(3).equals(ULIPasswordBox.getText())){
-                System.out.println("True");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("voting_screen.fxml"));
-                Parent root = loader.load();
+            if (userList.get(i).get(2).equals(ULIIDBox.getText())
+                    && userList.get(i).get(3).equals(ULIPasswordBox.getText())
+                    && userList.get(i).get(4).equals("false")) {
 
-                VoterController = loader.getController();
-                VoterController.setUsername(ULINameBox.getText());
+                return true;
 
-                Scene scene = new Scene(root);
-                Stage dash = new Stage();
-                dash.setScene(scene);
-                dash.show();
-
-                Stage stage = (Stage) ULINameBox.getScene().getWindow();
-                stage.close();
-
+            } else if (userList.get(i).get(2).equals(ULIIDBox.getText())
+                    && userList.get(i).get(3).equals(ULIPasswordBox.getText())
+                    && userList.get(i).get(4).equals("true")) {
+                ULIErrorLabel.setText("You have already voted");
+                break;
+            }
+            else {
+                ULIErrorLabel.setText("Incorrect username or password");
             }
         }
+        return false;
+    }
+
+    public void ULIBackButton(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

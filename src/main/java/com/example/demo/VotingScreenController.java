@@ -3,6 +3,7 @@ package com.example.demo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -29,13 +31,17 @@ import static java.util.Arrays.asList;
 
 public class VotingScreenController implements Initializable{
 
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
     @FXML
     private ListView<String> votingCandidateListView;
 
     @FXML
     private Label selectCandidateLabel;
 
-    private String username;
+    private String voterID;
 
     List<Candidate> candidateList = new ArrayList<>();
     List<String> candidate;
@@ -89,38 +95,64 @@ public class VotingScreenController implements Initializable{
         });
     }
 
-    public void setUsername(String username){
-        this.username = username;
+    public void setVoterID(String voterID){
+        this.voterID = voterID;
     }
-    public void confirmVote(ActionEvent actionEvent) throws FileNotFoundException {
-        Voter currentVoter;
-        for (int i = 0; i < voterList.size(); i++) {
-            if (voterList.get(i).getVoterUsername().equals(username)){
-                currentVoter = voterList.get(i);
-                if (!currentVoter.gethasVoted()) {
-                    for (int x = 0; x < candidateList.size(); x++) {
-                        if (selectCandidateLabel.getText() == candidateList.get(x).getName()) {
-                            candidateList.get(x).Increment();
-                        }
-                    }
-                    currentVoter.sethasVoted();
-                    PrintWriter pw = new PrintWriter("candidatedetails.txt");
-                    pw.close();
-                    for (int x = 0; x < candidateList.size(); x++) {
-                        candidateList.get(x).Save();
-
-                    }
-                    pw = new PrintWriter("userdetails.txt");
-                    pw.close();
-                    for (int x = 0; x < voterList.size(); x++) {
-                        voterList.get(x).Save();
-
-                    }
-
-
-            }
+    public void confirmVote(ActionEvent actionEvent) throws IOException {
+        boolean success = confirmVoteLogic();
+        if (success){
+            root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
+            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
 
     }
+
+    public boolean confirmVoteLogic() throws FileNotFoundException {
+        Voter currentVoter;
+
+        List<Candidate> candidateList = new ArrayList<>();
+        List<String> candidate;
+        File CSVFile = new File("candidatedetails.txt");
+        String CurrentLine;
+        Scanner CSVReader = null;
+
+        try {
+            CSVReader = new Scanner(CSVFile);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        while (CSVReader.hasNextLine()) {
+            CurrentLine = CSVReader.nextLine();
+            candidate = asList(CurrentLine.split(","));//converts String to list of Strings
+            candidateList.add(new Candidate(candidate.get(0), candidate.get(1), candidate.get(2),Integer.parseInt(candidate.get(3))));
+        }
+
+
+        for (int i = 0; i < voterList.size(); i++) {
+            if (voterList.get(i).getVoterID().equals(voterID)) {
+                currentVoter = voterList.get(i);
+                for (int j = 0; j < candidateList.size(); j++) {
+                    if(selectCandidateLabel.getText().equals(candidateList.get(j).getName())){
+                        return currentVoter.Vote(candidateList.get(j).getCandidateID());
+                    }
+                }
+
+
+                }
+            }
+        return false;
+        }
+
+
+
+    public void VMGoBack(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

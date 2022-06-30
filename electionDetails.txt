@@ -1,6 +1,17 @@
-Test1,Candidate1,true
-Test2,madi,true
-burger,23432,true
-noafonsfeno,n/a,true
-nlnlnl,n/a,true
-hello,null,false
+s,n/a,true
+Gamers,inconclusive,true
+Test87sd,123ww3,true
+ssss,inconclusive,true
+sss,inconclusive,true
+ffff,inconclusive,true
+fffasd,inconclusive,true
+sssssadasdasd,inconclusive,true
+dadasd,inconclusive,true
+dsadad,inconclusive,true
+asddsafasewer,inconclusive,true
+asddsafasesdasdwer,inconclusive,true
+asddsafadassesdasdwer,123ww3,true
+sssadafrgrethssss,inconclusive,true
+asddsafsssssadassesdasdwer,123ww3,true
+sdadsfa,n/a,true
+my chemical election,null,false

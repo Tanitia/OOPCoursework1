@@ -24,22 +24,6 @@ public class AdminPortalController {
         stage.show();
     }
 
-    public void EndElectionGo(ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("end_election.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void AuthoriseUsersGo(ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("authorise_users.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void ViewResultsGo(ActionEvent actionEvent) throws IOException {
         root = FXMLLoader.load(getClass().getResource("view_results.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
