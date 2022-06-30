@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -31,42 +32,31 @@ public class CreateCandidateController {
     @FXML
     private TextField ACIDBox;
 
-    List<Candidate> candidateList = new ArrayList<>();
-    List<String> candidate;
-    public void redirectAdminPortal(ActionEvent actionEvent) throws IOException {
-        boolean uniqueCandidateID = true;
+    @FXML
+            private Label ACErrorLabel;
 
-        if(!ACNameBox.getText().equals("") && !ACDescriptionBox.getText().equals("") && !ACIDBox.getText().equals("")) {
-            File CSVFile = new File("candidatedetails.txt");
-            String CurrentLine;
-            Scanner CSVReader = null;
-            try {
-                CSVReader = new Scanner(CSVFile);
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            while (CSVReader.hasNextLine()) {
-                CurrentLine = CSVReader.nextLine();
-                candidate = asList(CurrentLine.split(","));//converts String to list of Strings
-                candidateList.add(new Candidate(candidate.get(0), candidate.get(2), candidate.get(1), Integer.valueOf(candidate.get(3))));//Populates list with disks both game and music
-            }
-            for (int i = 0; i < candidateList.size(); i++) {
-                if(candidateList.get(i).getCandidateID().equals(ACIDBox.getText())){
-                    uniqueCandidateID = false;
-                }
+    public void confirmCandidateCreate(ActionEvent actionEvent) throws IOException {
+        Staff staff = new Staff();
 
+        boolean success = staff.candidateCreationLogic(ACNameBox.getText(),ACDescriptionBox.getText(),ACIDBox.getText(),ACErrorLabel);
+        if (success){
+            root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
+            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
-            }
-            if(uniqueCandidateID) {
-                Candidate currentCandidate = new Candidate(ACNameBox.getText(), ACDescriptionBox.getText(), ACIDBox.getText(), 0);
-                currentCandidate.Save();
-
-                root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
-                stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
         }
+
+    }
+
+
+
+    public void ACBackGo(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

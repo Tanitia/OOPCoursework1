@@ -18,5 +18,10 @@
       <TextField id="NCParty" layoutX="232.0" layoutY="150.0" promptText="Candidate Party" />
       <TextField id="NCDesc" layoutX="232.0" layoutY="179.0" promptText="Candidate Description" />
       <Button id="NCCreateButton" fx:id="NCCreate" layoutX="274.0" layoutY="322.0" mnemonicParsing="false" text="Create" />
+      <Label fx:id="NCErrorLabel" layoutX="285.0" layoutY="255.0" text="Label" textFill="#be0000">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

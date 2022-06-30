@@ -21,5 +21,6 @@
             <Font name="System Italic" size="12.0" />
          </font>
       </Label>
+      <Button fx:id="ALCancel" layoutX="275.0" layoutY="327.0" mnemonicParsing="false" onAction="#ALGoBack" text="Cancel" />
    </children>
 </AnchorPane>
