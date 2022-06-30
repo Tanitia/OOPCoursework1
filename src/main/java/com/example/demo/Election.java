@@ -4,12 +4,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Election {
+    //encapsulation
+    //all priv attributes accessible through public methods
     private String electionName;
 
     private String electionWinner;
 
     private boolean electionStatus;
 
+    //polymorphism through two constructors
+    //improves robustness and adaptibility of code
     public Election(String electionName){
         this.electionName = electionName;
         this.electionWinner = "null";
@@ -27,6 +31,7 @@ public class Election {
         this.electionStatus= true;
     }
 
+    //encapsulation, public getters
     public String getElectionName(){
         return this.electionName;
     }

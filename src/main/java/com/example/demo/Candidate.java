@@ -3,6 +3,8 @@ package com.example.demo;
 import java.io.FileWriter;
 import java.io.IOException;
 
+//encapsulation for security
+//priv attributes accesssed through public self contained methods
 public class Candidate {
     private String candidateName;
 
@@ -12,6 +14,7 @@ public class Candidate {
 
     private Integer numVotes;
 
+    //constructor
     public Candidate(String candidateName, String candidateDescription, String candidateID, Integer numVotes) {
         this.candidateName = candidateName;
         this.candidateDescription = candidateDescription;
@@ -37,6 +40,8 @@ public void Increment(){
             return false;
         }
     }
+
+    //as above - public getters for encapsulation
 public String getName(){
         return this.candidateName;
 };
@@ -50,6 +55,10 @@ public String getName(){
     public int getNumVotes(){
         return this.numVotes;
     }
+
+    //message passing - compare method takes
+    //other Candidate object as parameter
+    //objects take actions based on each other
     public Boolean compare(Candidate nextCandidate){
         return this.numVotes< nextCandidate.getNumVotes();
     }

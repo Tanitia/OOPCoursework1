@@ -12,9 +12,15 @@ import java.util.Scanner;
 
 import static java.util.Arrays.asList;
 
+//inheritance = reusability
+//staff inherits user
 public class Staff extends User{
+
+    //encapsulation through only # and = attributes
     protected String Username;
     protected String Password;
+
+    //polymorphism - adaptibility through multiple constructors
     public Staff(String Username, String Password){
         this.Username = Username;
         this.Password = Password;
@@ -24,15 +30,22 @@ public class Staff extends User{
         this.Password = "Password";
     }
     public boolean createElection(TextField NENameBox, Label NEErrorLabel ) throws FileNotFoundException {
+        //list of candidate objects
         List<Candidate> candidateList = new ArrayList<>();
+        //list of strings
         List<String> candidate;
 
+        //list of voter objects
         List<Voter> voterList = new ArrayList<>();
+        //list of strings
         List<String> voter;
-
+        //string list
         List<String> electionDetailsList = new ArrayList<>();
+        //list of election objects
         List<Election> electionList = new ArrayList<>();
+        //single election object
         Election election;
+        //file handling
         File CSVFile = new File("electionDetails.txt");
         String CurrentLine;
         Scanner CSVReader = new Scanner(CSVFile);
@@ -44,7 +57,7 @@ public class Staff extends User{
                 CurrentLine = CSVReader.nextLine();
                 electionDetailsList = asList(CurrentLine.split(","));//converts String to list of Strings
                 election = new Election(electionDetailsList.get(0), electionDetailsList.get(1), Boolean.parseBoolean(electionDetailsList.get(2)));
-                electionList.add(election);//Populates list with disks both game and music
+                electionList.add(election);
             }
             boolean uniqueName = true;
             for (int i = 0; i < electionList.size(); i++) {
@@ -141,6 +154,8 @@ public class Staff extends User{
         }
         return false;
     }
+
+    //this method is similar to above as it is used for testing
     public boolean createElection(String NENameBox) throws FileNotFoundException {//version of method without error label functionality(Used only for unit Tests)
         List<Candidate> candidateList = new ArrayList<>();
         List<String> candidate;

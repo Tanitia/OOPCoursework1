@@ -64,7 +64,7 @@ public class AdminLoginController {
         while (CSVReader.hasNextLine()) {
             CurrentLine = CSVReader.nextLine();
             user = asList(CurrentLine.split(","));//converts String to list of Strings
-            adminList.add(user);//Populates list with disks both game and music
+            adminList.add(user);
         }
 
 
@@ -80,6 +80,7 @@ public class AdminLoginController {
     }
 
     public void ALGoBack(ActionEvent actionEvent) throws IOException {
+        //navigation
         root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);

@@ -25,9 +25,13 @@ public class UserLoginController {
 
 
     static VotingScreenController VoterController ;
+
+    //nav prep
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    //data-gui flow
     @FXML
     private TextField ULIIDBox;
 
@@ -39,6 +43,7 @@ public class UserLoginController {
 
 
     public void logInAction(ActionEvent actionEvent) throws IOException {
+        //nav on success
         boolean success = confirmLogin();
         if (success) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("voting_screen.fxml"));
@@ -58,6 +63,7 @@ public class UserLoginController {
         }
     }
     public boolean confirmLogin() throws IOException {
+        //lists for value holding
         List<List<String>> userList = new ArrayList<>();
         List<String> user;
         File CSVFile = new File("userdetails.txt");
@@ -66,7 +72,7 @@ public class UserLoginController {
         while (CSVReader.hasNextLine()) {
             CurrentLine = CSVReader.nextLine();
             user = asList(CurrentLine.split(","));//converts String to list of Strings
-            userList.add(user);//Populates list with disks both game and music
+            userList.add(user);
         }
 
 
@@ -91,6 +97,7 @@ public class UserLoginController {
     }
 
     public void ULIBackButton(ActionEvent actionEvent) throws IOException {
+        //nav
         root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);

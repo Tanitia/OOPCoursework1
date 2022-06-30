@@ -7,10 +7,19 @@ import java.util.Scanner;
 
 import static java.util.Arrays.asList;
 
+//voter inherits from user
+//inherits reusable attributes
 public class Voter extends User {
+
+    //security through encapsulation
+    //# and = attributes
+    //accessed through public getter methods
     private String VoterID;
     private String Password;
     private Boolean hasVoted;
+
+    //polymorphism through multiple constructors
+    //adds adaptability
 
     public Voter(String Name, String Address, String VoterID, String Password) {
         this.Name = Name;
@@ -26,6 +35,8 @@ public class Voter extends User {
         this.Password = Password;
         this.hasVoted = hasVoted;
     }
+
+    //encapsulation - getters
 
     public boolean gethasVoted(){
         return this.hasVoted;
@@ -79,7 +90,7 @@ public class Voter extends User {
         while (CSVReader.hasNextLine()) {
             CurrentLine = CSVReader.nextLine();
             candidate = asList(CurrentLine.split(","));//converts String to list of Strings
-            candidateList.add(new Candidate(candidate.get(0), candidate.get(1), candidate.get(2), Integer.valueOf(candidate.get(3))));//Populates list with disks both game and music
+            candidateList.add(new Candidate(candidate.get(0), candidate.get(1), candidate.get(2), Integer.valueOf(candidate.get(3))));
         }
         CSVFile = new File("userdetails.txt");
         try {
