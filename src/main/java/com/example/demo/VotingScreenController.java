@@ -31,9 +31,13 @@ import static java.util.Arrays.asList;
 
 public class VotingScreenController implements Initializable{
 
+    //nav
+
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    //gui comm prep
 
     @FXML
     private ListView<String> votingCandidateListView;
@@ -52,6 +56,7 @@ public class VotingScreenController implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        //file handling prep
         File CSVFile = new File("candidatedetails.txt");
         String CurrentLine;
         Scanner CSVReader = null;
@@ -100,6 +105,7 @@ public class VotingScreenController implements Initializable{
     }
     public void confirmVote(ActionEvent actionEvent) throws IOException {
         boolean success = confirmVoteLogic();
+        //nav on success
         if (success){
             root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
             stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

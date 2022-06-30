@@ -1,2 +1,2 @@
-ger,1,1,0
-max,2,2,1
+name 1,desc 1,id 1,0
+name 2,desc 2,id 2,1

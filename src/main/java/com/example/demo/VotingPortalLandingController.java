@@ -16,13 +16,17 @@ public class VotingPortalLandingController {
     private Label welcomeText;
 
     @FXML
+    //ignore
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
+
+    //nav prep
     private Stage stage;
     private Scene scene;
     private Parent root;
     public void redirectUserLogin(ActionEvent actionEvent) throws IOException {
+        //nav
         root = FXMLLoader.load(getClass().getResource("user_login.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -31,6 +35,7 @@ public class VotingPortalLandingController {
     }
 
     public void redirectUserSignUp(ActionEvent actionEvent) throws IOException {
+        //nav
         root = FXMLLoader.load(getClass().getResource("user_sign_up.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -39,6 +44,7 @@ public class VotingPortalLandingController {
     }
 
     public void redirectAdminLogin(ActionEvent actionEvent) throws IOException {
+        //nav
         root = FXMLLoader.load(getClass().getResource("admin_log_in.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);

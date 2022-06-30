@@ -20,10 +20,13 @@ import java.util.Scanner;
 import static java.util.Arrays.asList;
 
 public class CreateCandidateController {
+
+    //nav prep
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+    //gui data flow
     @FXML
     private TextField ACNameBox;
     @FXML
@@ -36,10 +39,12 @@ public class CreateCandidateController {
             private Label ACErrorLabel;
 
     public void confirmCandidateCreate(ActionEvent actionEvent) throws IOException {
+        //new object from staff class
         Staff staff = new Staff();
 
         boolean success = staff.candidateCreationLogic(ACNameBox.getText(),ACDescriptionBox.getText(),ACIDBox.getText(),ACErrorLabel);
         if (success){
+            //redirect on success
             root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -53,6 +58,7 @@ public class CreateCandidateController {
 
 
     public void ACBackGo(ActionEvent actionEvent) throws IOException {
+        //redirect
         root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);

@@ -27,11 +27,14 @@ import static java.util.Arrays.asList;
 
 public class ViewResultsController implements Initializable {
 
+    //gui comms
     @FXML
     private ListView<String> VRElectionListview;
 
     @FXML
     private Label VRWinnerLabel;
+
+    //nav prep
 
     private Stage stage;
     private Scene scene;
@@ -87,6 +90,7 @@ public class ViewResultsController implements Initializable {
     }
 
     public void VRBackButton(ActionEvent actionEvent) throws IOException {
+        //nav
         root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);

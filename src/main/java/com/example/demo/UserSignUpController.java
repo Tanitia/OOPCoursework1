@@ -24,10 +24,13 @@ import static java.util.Arrays.asList;
 
 public class UserSignUpController {
 
+    //nav prep
+
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+    //gui/controller comms
     @FXML
     private TextField USUNameBox;
     @FXML
@@ -41,6 +44,7 @@ public class UserSignUpController {
 
 
     public void confirmSignup(ActionEvent actionEvent) throws IOException {
+        //nav on success
         boolean success = voterSignup();
         if (success) {
             root = FXMLLoader.load(getClass().getResource("user_login.fxml"));
@@ -63,7 +67,7 @@ public class UserSignUpController {
             while (CSVReader.hasNextLine()) {
                 CurrentLine = CSVReader.nextLine();
                 user = asList(CurrentLine.split(","));//converts String to list of Strings
-                userList.add(user);//Populates list with disks both game and music
+                userList.add(user);
             }
             boolean uniqueID = true;
             for (int i = 0; i < userList.size(); i++) {
@@ -82,6 +86,7 @@ public class UserSignUpController {
     }
 
     public void USUGoBack(ActionEvent actionEvent) throws IOException {
+        //nav
         root = FXMLLoader.load(getClass().getResource("voting_portal_landing.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);

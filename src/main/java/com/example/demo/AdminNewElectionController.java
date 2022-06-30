@@ -19,6 +19,8 @@ import static java.util.Arrays.asList;
 
 
 public class AdminNewElectionController {
+
+    //prep for gui/controller flow
     @FXML
     private TextField NENameBox;
 @FXML
@@ -29,13 +31,18 @@ public class AdminNewElectionController {
 
     List<Voter> voterList = new ArrayList<>();
     List<String> voter;
+
+    //nav prep
     private Stage stage;
     private Scene scene;
     private Parent root;
     public void createElection(ActionEvent actionEvent) throws IOException {
+        //polymorphism - constructor used to call Staff method
+        //without admin needing to log in
         Staff admin = new Staff("Admin","Admin");
         boolean success = admin.createElection(NENameBox, NEErrorLabel);
         if (success){
+            //nav on success
             root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -46,6 +53,7 @@ public class AdminNewElectionController {
     }
 
     public void returnToAdminPortal(ActionEvent actionEvent) throws IOException {
+        //nav
         root = FXMLLoader.load(getClass().getResource("admin_portal.fxml"));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);

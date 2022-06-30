@@ -14,4 +14,5 @@ asddsafadassesdasdwer,123ww3,true
 sssadafrgrethssss,inconclusive,true
 asddsafsssssadassesdasdwer,123ww3,true
 sdadsfa,n/a,true
-my chemical election,null,false
+my chemical election,max,true
+election restore,null,false
